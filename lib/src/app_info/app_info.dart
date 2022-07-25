@@ -11,8 +11,20 @@ class AppInfo {
   Future<Map> getPackageInfo() async {
     try {
       final info = await package.PackageInfo.fromPlatform();
+      var trMap = {
+        '|ç|Ç|': 'c',
+        '|ğ|Ğ|': 'g',
+        '|ş|Ş|': 's',
+        '|ü|Ü|': 'u',
+        '|ı|İ|': 'i',
+        '|ö|Ö|': 'o',
+      };
+      String name = info.appName.replaceAll(RegExp(",|!|[+]|[~]|[#]|[=]|[?]"), "").replaceAll(RegExp(r'\s\s'), ' ');
+      trMap.forEach((key, value) {
+        name = name.replaceAll(RegExp(key), value);
+      });
       return {
-        "appName": info.appName.replaceAll(RegExp(",|!|[+]|[~]|[#]|[=]|[?]"), "").replaceAll(RegExp(r'\s\s'), ' '),
+        "appName": name,
         "version": info.version,
         "buildNumber": info.buildNumber,
         "packageName": info.packageName,

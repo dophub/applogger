@@ -14,13 +14,12 @@ class LokiLogger {
   Future<void> log(LokiModel lokiModel) async {
     try {
       final url = '${DopLogger.instance.lokiUrl}/loki/api/v1/push';
-      unawaited(
-        Dio().post(
-          url,
-          data: lokiModel.convertToJson(),
-          options: Options(contentType: "application/json"),
-        ),
+      final res = await Dio().post(
+        url,
+        data: lokiModel.convertToJson(),
+        options: Options(contentType: "application/json"),
       );
+      debugPrint(res.data);
     } catch (e) {
       debugPrint('loki logger error: $e');
     }

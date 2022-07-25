@@ -1,39 +1,84 @@
 <!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
-
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
+Loki ile loglama. 
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+## Kullanımı
 
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
-
+Paketi projeye eklemek için 'pubspec.yaml' dosyasına girip altaki kod bluğu ekliyoruz
 ```dart
-const like = 'sample';
+  product_detail:
+    git:
+      url: https://bitbucket.org/digital-operasyon-merkezi/product_detail_package.git
+      ref: prod
 ```
 
-## Additional information
+Paketi import etmek için
+```dart
+import 'package:dop_logger/dop_logger.dart';
+```
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+Paketi init ediyoruz
+```dart
+void main() {
+  DopLogger.init(
+    'https://lokiBaseUrl',
+    true,
+    true,
+        () => runApp(const MyApp()),
+  );
+}
+```
+
+Daha sonra paketin conguration nini değiştirmek için
+```dart
+DopLogger.instance.configuration.setUser(
+  DopLoggerUser(id: '123123213123', username: 'Mustafa'),
+);
+```
+
+Navigation Logger için
+```dart
+void navigationLog() {
+  NavigationLogger.instance.log(
+    const RouteSettings(
+      name: 'AppLoggerDetailScreen',
+      arguments: {'userName': 'Mto', 'userId': 1},
+    ),
+  );
+}
+```
+
+Api Logger için
+```dart
+Future<void> getRequest() async {
+  final uri = Uri.https('jsonplaceholder.typicode.com', 'todos/1');
+  final res = await http.get(
+    uri,
+    headers: {"content-type": "application/json"},
+  );
+  HttpLogger.instance.log(
+    url: uri.toString(),
+    statusCode: res.statusCode,
+    header: {},
+    requestBody: {},
+    responseBody: res.body,
+  );
+}
+```
+
+
+/// Configuration içinde olan parametreler
+/// kullanıcı bilgileri
+* user
+
+/// Http log status
+* httpLog
+
+/// Navigation log status
+* navigationLog
+
+/// Hata oluştuğunda uygulama kapansın mı
+* killAppOnError
+
+/// Flutter tarafından hata oluştuğunda uygulama kapansın mı
+* killAppOnErrorCausedByFlutter

@@ -20,7 +20,7 @@ class NavigationLogger {
       final deviceInfo = await AppInfo.instance.getDeviceInfo();
       final lokiModel = LokiModel(
         streams: StreamElement(
-          stream: {(packageInfo["appName"] as String).replaceAll(RegExp('+-=-~-!-~-!-='), '') ?? "UndefinedApp": LogType.NAV.name},
+          stream: {(packageInfo["appName"] as String) ?? "UndefinedApp": LogType.NAV.name},
           values: '{"user":${jsonEncode(DopLogger.instance.configuration.user.toJson())},'
               '"route":"${settings.name}","arguments":"${settings.arguments.toString()}",'
               '"app_info":${jsonEncode(packageInfo)},'

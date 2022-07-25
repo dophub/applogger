@@ -8,8 +8,12 @@ class AppInfo {
 
   static AppInfo get instance => _instance ??= AppInfo();
 
+  Map? packageInfoMap;
+  Map? deviceInfoPluginMap;
+
   Future<Map> getPackageInfo() async {
     try {
+      if (packageInfoMap != null) return packageInfoMap!;
       final info = await package.PackageInfo.fromPlatform();
       var replaceMap = {
         ',|!|[+]|[~]|[#]|[=]|[?]': '',
@@ -23,12 +27,13 @@ class AppInfo {
       };
       String name = info.appName;
       replaceMap.forEach((key, value) => name = name.replaceAll(RegExp(key), value));
-      return {
+      packageInfoMap = {
         "appName": name,
         "version": info.version,
         "buildNumber": info.buildNumber,
         "packageName": info.packageName,
       };
+      return packageInfoMap!;
     } catch (e) {
       return {};
     }
@@ -36,12 +41,14 @@ class AppInfo {
 
   Future<Map> getDeviceInfo() async {
     try {
+      if (deviceInfoPluginMap != null) return deviceInfoPluginMap!;
       final deviceInfo = DeviceInfoPlugin();
       if (Platform.isIOS) {
-        return (await deviceInfo.iosInfo).toMap();
+        deviceInfoPluginMap = (await deviceInfo.iosInfo).toMap();
       } else {
-        return (await deviceInfo.androidInfo).toMap();
+        deviceInfoPluginMap = (await deviceInfo.androidInfo).toMap();
       }
+      return deviceInfoPluginMap!;
     } catch (e) {
       return {};
     }

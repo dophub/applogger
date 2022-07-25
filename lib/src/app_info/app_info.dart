@@ -12,7 +12,7 @@ class AppInfo {
     try {
       final info = await package.PackageInfo.fromPlatform();
       return {
-        "appName": info.appName,
+        "appName": info.appName.replaceAll(RegExp(",|!|[+]|[~]|[#]|[=]|[?]"), "").replaceAll(RegExp(r'\s\s'), ' '),
         "version": info.version,
         "buildNumber": info.buildNumber,
         "packageName": info.packageName,

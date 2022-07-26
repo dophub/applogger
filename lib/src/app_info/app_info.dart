@@ -16,14 +16,14 @@ class AppInfo {
       if (packageInfoMap != null) return packageInfoMap!;
       final info = await package.PackageInfo.fromPlatform();
       var replaceMap = {
-        ',|!|[+]|[~]|[#]|[=]|[?]': '',
-        r'\s\s': ' ',
+        r' ': '_',
         'ç|Ç': 'c',
         'ğ|Ğ': 'g',
         'ş|Ş': 's',
         'ü|Ü': 'u',
         'ı|İ': 'i',
         'ö|Ö': 'o',
+        r'[^a-zA-Z0-9_]':''26
       };
       String name = info.appName;
       replaceMap.forEach((key, value) => name = name.replaceAll(RegExp(key), value));

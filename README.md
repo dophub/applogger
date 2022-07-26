@@ -6,10 +6,10 @@ Loki ile loglama.
 
 Paketi projeye eklemek için 'pubspec.yaml' dosyasına girip altaki kod bluğu ekliyoruz
 ```dart
-  product_detail:
+  dop_logger:
     git:
-      url: https://bitbucket.org/digital-operasyon-merkezi/product_detail_package.git
-      ref: prod
+      url: https://github.com/dophub/applogger.git
+      ref: prod-0726
 ```
 
 Paketi import etmek için

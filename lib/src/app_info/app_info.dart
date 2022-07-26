@@ -23,7 +23,7 @@ class AppInfo {
         'ü|Ü': 'u',
         'ı|İ': 'i',
         'ö|Ö': 'o',
-        r'[^a-zA-Z0-9_]':''26
+        r'[^a-zA-Z0-9_]':''
       };
       String name = info.appName;
       replaceMap.forEach((key, value) => name = name.replaceAll(RegExp(key), value));

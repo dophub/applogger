@@ -24,7 +24,7 @@ class ExceptionLogger {
               '{"user":${jsonEncode(DopLogger.instance.configuration.user.toJson())},"error":${jsonEncode(error.toString())},"stack":${jsonEncode(stack.toString())},"app_info":${jsonEncode(packageInfo)},"device_info":${jsonEncode(deviceInfo)}}',
         ),
       );
-      LokiLogger.instance.log1(lokiModel);
+      LokiLogger.instance.log(lokiModel);
       if (DopLogger.instance.configuration.killAppOnError) exit(1);
     } catch (e) {
       debugPrint('loki logger error: $e');
@@ -42,7 +42,7 @@ class ExceptionLogger {
               '{"user":${jsonEncode(DopLogger.instance.configuration.user.toJson())},"error":"Error caused by flutter","stack":${jsonEncode(details.exception.toString())} ,"app_info":${jsonEncode(packageInfo)},"device_info":${jsonEncode(deviceInfo)}}',
         ),
       );
-      LokiLogger.instance.log1(lokiModel);
+      LokiLogger.instance.log(lokiModel);
       if (DopLogger.instance.configuration.killAppOnErrorCausedByFlutter) exit(1);
     } catch (e) {
       debugPrint('loki logger error: $e');

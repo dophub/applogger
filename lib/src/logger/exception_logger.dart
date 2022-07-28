@@ -21,7 +21,7 @@ class ExceptionLogger {
         streams: StreamElement(
           stream: {packageInfo["appName"] ?? "UndefinedApp": LogType.ERR.name},
           values:
-              '{"user":${jsonEncode(DopLogger.instance.configuration.user.toJson())},"error":"$error","stack":"$stack","app_info":${jsonEncode(packageInfo)},"device_info":${jsonEncode(deviceInfo)}}',
+              '{"user":${jsonEncode(DopLogger.instance.configuration.user.toJson())},"error":${jsonEncode(error)},"stack":"$stack","app_info":${jsonEncode(packageInfo)},"device_info":${jsonEncode(deviceInfo)}}',
         ),
       );
       LokiLogger.instance.log(lokiModel);
@@ -39,7 +39,7 @@ class ExceptionLogger {
         streams: StreamElement(
           stream: {packageInfo["appName"] ?? "UndefinedApp": LogType.APPERR.name},
           values:
-              '{"user":${jsonEncode(DopLogger.instance.configuration.user.toJson())},"error":"Error caused by flutter","stack":"${details.exception}" ,"app_info":${jsonEncode(packageInfo)},"device_info":${jsonEncode(deviceInfo)}}',
+              '{"user":${jsonEncode(DopLogger.instance.configuration.user.toJson())},"error":"Error caused by flutter","stack":${jsonEncode(details.exception)} ,"app_info":${jsonEncode(packageInfo)},"device_info":${jsonEncode(deviceInfo)}}',
         ),
       );
       LokiLogger.instance.log(lokiModel);

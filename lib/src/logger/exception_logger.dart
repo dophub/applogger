@@ -18,7 +18,7 @@ class ExceptionLogger {
     try {
       final packageInfo = await AppInfo.instance.getPackageInfo();
       final deviceInfo = await AppInfo.instance.getDeviceInfo();
-      log("error: $error \nstack: $stack",error: true,name: 'DopLoggerError: ');
+      log("onErrorCausedByFlutter",error: "error: $error \nstack: $stack", name: 'DopLoggerError: ');
       final lokiModel = LokiModel(
         streams: StreamElement(
           stream: {packageInfo["appName"] ?? "UndefinedApp": LogType.ERR.name},
@@ -37,7 +37,7 @@ class ExceptionLogger {
     try {
       final packageInfo = await AppInfo.instance.getPackageInfo();
       final deviceInfo = await AppInfo.instance.getDeviceInfo();
-      log("exception: ${details.exception} \nstack: ${details.stack}",error: true,name: 'DopLoggerError: ');
+      log("onErrorCausedByFlutter",error: 'exception: ${details.exception} \nstack: ${details.stack}',name: 'DopLoggerError: ');
       final lokiModel = LokiModel(
         streams: StreamElement(
           stream: {packageInfo["appName"] ?? "UndefinedApp": LogType.APPERR.name},

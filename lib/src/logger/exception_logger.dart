@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import '../app_info/app_info.dart';
@@ -17,6 +18,7 @@ class ExceptionLogger {
     try {
       final packageInfo = await AppInfo.instance.getPackageInfo();
       final deviceInfo = await AppInfo.instance.getDeviceInfo();
+      log("error: $error \nstack: $stack",error: true,name: 'DopLoggerError: ');
       final lokiModel = LokiModel(
         streams: StreamElement(
           stream: {packageInfo["appName"] ?? "UndefinedApp": LogType.ERR.name},
@@ -35,6 +37,7 @@ class ExceptionLogger {
     try {
       final packageInfo = await AppInfo.instance.getPackageInfo();
       final deviceInfo = await AppInfo.instance.getDeviceInfo();
+      log("exception: ${details.exception} \nstack: ${details.stack}",error: true,name: 'DopLoggerError: ');
       final lokiModel = LokiModel(
         streams: StreamElement(
           stream: {packageInfo["appName"] ?? "UndefinedApp": LogType.APPERR.name},

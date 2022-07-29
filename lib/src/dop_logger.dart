@@ -16,8 +16,6 @@ class DopLogger {
   /// Laki BaseUrl
   late String lokiUrl;
 
-
-
   static Future<void> init(
     String lokiUrl,
     bool httpLog,

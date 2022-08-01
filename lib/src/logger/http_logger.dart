@@ -1,6 +1,7 @@
 import 'dart:convert' show jsonEncode;
 import 'package:dop_logger/src/app_info/app_info.dart';
 import 'package:flutter/foundation.dart';
+import 'dart:developer' as dev;
 
 import '../../dop_logger.dart';
 import '../cons/enum.dart';
@@ -50,16 +51,13 @@ class HttpLogger {
     Map<String, dynamic> requestBody,
     String responseBody,
   ) {
-    debugPrint(
-        '┌─ Http Request ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────');
-    debugPrint(' Api Request Url: $url');
-    debugPrint(' Header: $header');
-    debugPrint(' Request: $requestBody');
-    debugPrint(
-        ' ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────');
-    debugPrint(' Status Code: $statusCode');
-    debugPrint(' Response: $responseBody');
-    debugPrint(
-        '└─ Http End ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────');
+    dev.log('┌─ Http Request ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────');
+    dev.log(' Api Request Url: $url');
+    dev.log(' Header: $header');
+    dev.log(' Request: $requestBody');
+    dev.log(' ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────');
+    dev.log(' Status Code: $statusCode');
+    dev.log(' Response: $responseBody');
+    dev.log('└─ Http End ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────');
   }
 }

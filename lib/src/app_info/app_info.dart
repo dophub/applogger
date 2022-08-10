@@ -47,6 +47,7 @@ class AppInfo {
         deviceInfoPluginMap = (await deviceInfo.iosInfo).toMap();
       } else {
         deviceInfoPluginMap = (await deviceInfo.androidInfo).toMap();
+        deviceInfoPluginMap?.remove('systemFeatures');
       }
       return deviceInfoPluginMap!;
     } catch (e) {

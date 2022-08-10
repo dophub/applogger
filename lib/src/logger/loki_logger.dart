@@ -13,7 +13,7 @@ class LokiLogger {
 
   Future<void> log(LokiModel lokiModel) async {
     try {
-      final url = '${DopLogger.instance.lokiUrl}/loki/api/v1/push';
+      final url = DopLogger.instance.lokiUrl;
       final body = lokiModel.convertToJson();
       unawaited(
         Dio().post(

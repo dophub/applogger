@@ -7,6 +7,8 @@ import 'model/loki_model.dart';
 
 typedef AppRunner = FutureOr<void> Function();
 
+typedef AppLoggerCallBack = void Function(LokiModel lokiModel);
+
 class DopLogger {
   static DopLogger? _instance;
 
@@ -19,7 +21,7 @@ class DopLogger {
   late String lokiUrl;
 
   /// log yapıldığı zaman çağırılan fonksiyon eğer null ise loki ye log alır
-  late final Function(LokiModel lokiModel) callBackFun;
+  late final AppLoggerCallBack callBackFun;
 
   DopLogger._();
 
@@ -28,7 +30,7 @@ class DopLogger {
     bool httpLog,
     bool navigationLog,
     AppRunner appRunner, [
-    Function(LokiModel lokiModel)? callBackFun,
+    AppLoggerCallBack? callBackFun,
   ]) async {
     DopLogger.instance.lokiUrl = lokiUrl;
     DopLogger.instance.configuration.httpLog = httpLog;

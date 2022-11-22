@@ -25,7 +25,7 @@ class HttpLogger {
       if (!DopLogger.instance.configuration.httpLog) return;
       final packageInfo = await AppInfo.instance.getPackageInfo();
       final deviceInfo = await AppInfo.instance.getDeviceInfo();
-      LokiLogger.instance.log(
+      DopLogger.instance.callBackFun(
         LokiModel(
           streams: StreamElement(
             stream: {packageInfo["appName"] ?? "UndefinedApp": LogType.API.name},
@@ -51,13 +51,16 @@ class HttpLogger {
     Map<String, dynamic> requestBody,
     String responseBody,
   ) {
-    dev.log('┌─ Http Request ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────');
+    dev.log(
+        '┌─ Http Request ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────');
     dev.log(' Api Request Url: $url');
     dev.log(' Header: $header');
     dev.log(' Request: $requestBody');
-    dev.log(' ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────');
+    dev.log(
+        ' ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────');
     dev.log(' Status Code: $statusCode');
     dev.log(' Response: $responseBody');
-    dev.log('└─ Http End ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────');
+    dev.log(
+        '└─ Http End ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────');
   }
 }

@@ -5,7 +5,6 @@ import '../app_info/app_info.dart';
 import '../cons/enum.dart';
 import '../dop_logger.dart';
 import '../model/loki_model.dart';
-import 'loki_logger.dart';
 
 /// Log User Navigation by Loki
 class NavigationLogger {
@@ -27,7 +26,7 @@ class NavigationLogger {
               '"device_info":${jsonEncode(deviceInfo)}}',
         ),
       );
-      LokiLogger.instance.log(lokiModel);
+      DopLogger.instance.callBackFun(lokiModel);
     } catch (e) {
       debugPrint('loki logger error: $e');
     }

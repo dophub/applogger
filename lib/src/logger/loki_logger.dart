@@ -7,21 +7,19 @@ import 'package:dio/dio.dart';
 
 /// Push Log to Loki
 class LokiLogger {
-  static LokiLogger? _instance;
-
-  static LokiLogger get instance => _instance ??= LokiLogger();
-
-  Future<void> log(LokiModel lokiModel) async {
+  void log(LokiModel lokiModel) {
     try {
       final url = DopLogger.instance.lokiUrl;
       final body = lokiModel.convertToJson();
-      unawaited(
-        Dio().post(
-          url,
-          data: body,
-          options: Options(contentType: "application/json"),
-        ),
-      );
+      Dio()
+          .post(
+            url,
+            data: body,
+            options: Options(
+              contentType: "application/json",
+            ),
+          )
+          .ignore();
     } catch (e) {
       debugPrint('loki logger error: $e');
     }

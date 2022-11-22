@@ -5,7 +5,6 @@ import 'dart:developer' as dev;
 
 import '../../dop_logger.dart';
 import '../cons/enum.dart';
-import '../model/log_model.dart';
 
 /// Log Http by Loki
 class HttpLogger {

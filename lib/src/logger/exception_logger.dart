@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../app_info/app_info.dart';
 import '../cons/enum.dart';
 import '../dop_logger.dart';
-import '../model/loki_model.dart';
+import '../model/log_model.dart';
 
 /// Get Exception and log it to loki
 class ExceptionLogger {
@@ -18,7 +18,7 @@ class ExceptionLogger {
       final packageInfo = await AppInfo.instance.getPackageInfo();
       final deviceInfo = await AppInfo.instance.getDeviceInfo();
       log("onErrorCausedByFlutter", error: "error: $error \nstack: $stack", name: 'DopLoggerError: ');
-      final lokiModel = LokiModel(
+      final lokiModel = LogModel(
         streams: StreamElement(
           stream: {packageInfo["appName"] ?? "UndefinedApp": LogType.ERR.name},
           values:
@@ -38,7 +38,7 @@ class ExceptionLogger {
       final deviceInfo = await AppInfo.instance.getDeviceInfo();
       log("onErrorCausedByFlutter",
           error: 'exception: ${details.exception} \nstack: ${details.stack}', name: 'DopLoggerError: ');
-      final lokiModel = LokiModel(
+      final lokiModel = LogModel(
         streams: StreamElement(
           stream: {packageInfo["appName"] ?? "UndefinedApp": LogType.APPERR.name},
           values:

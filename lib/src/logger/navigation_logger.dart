@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart' show RouteSettings;
 import '../app_info/app_info.dart';
 import '../cons/enum.dart';
 import '../dop_logger.dart';
-import '../model/loki_model.dart';
+import '../model/log_model.dart';
 
 /// Log User Navigation by Loki
 class NavigationLogger {
@@ -17,7 +17,7 @@ class NavigationLogger {
       if (!DopLogger.instance.configuration.navigationLog) return;
       final packageInfo = await AppInfo.instance.getPackageInfo();
       final deviceInfo = await AppInfo.instance.getDeviceInfo();
-      final lokiModel = LokiModel(
+      final lokiModel = LogModel(
         streams: StreamElement(
           stream: {packageInfo["appName"] ?? "UndefinedApp": LogType.NAV.name},
           values: '{"user":${jsonEncode(DopLogger.instance.configuration.user.toJson())},'

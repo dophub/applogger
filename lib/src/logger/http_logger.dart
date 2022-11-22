@@ -5,7 +5,7 @@ import 'dart:developer' as dev;
 
 import '../../dop_logger.dart';
 import '../cons/enum.dart';
-import '../model/loki_model.dart';
+import '../model/log_model.dart';
 
 /// Log Http by Loki
 class HttpLogger {
@@ -26,7 +26,7 @@ class HttpLogger {
       final packageInfo = await AppInfo.instance.getPackageInfo();
       final deviceInfo = await AppInfo.instance.getDeviceInfo();
       DopLogger.instance.callBackFun(
-        LokiModel(
+        LogModel(
           streams: StreamElement(
             stream: {packageInfo["appName"] ?? "UndefinedApp": LogType.API.name},
             values: '{"user":${jsonEncode(DopLogger.instance.configuration.user.toJson())},'

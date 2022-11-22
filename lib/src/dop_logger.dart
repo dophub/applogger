@@ -3,11 +3,11 @@ import 'package:dop_logger/dop_logger.dart';
 import 'package:dop_logger/src/logger/exception_logger.dart';
 import 'package:flutter/foundation.dart';
 import 'configuration/configuration.dart';
-import 'model/loki_model.dart';
+import 'model/log_model.dart';
 
 typedef AppRunner = FutureOr<void> Function();
 
-typedef AppLoggerCallBack = void Function(LokiModel lokiModel);
+typedef AppLoggerCallBack = void Function(LogModel logModel);
 
 class DopLogger {
   static DopLogger? _instance;

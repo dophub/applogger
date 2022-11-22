@@ -1,7 +1,7 @@
 import 'package:background_json_parser/background_json_parser.dart';
 
-class LokiModel extends IBaseModel {
-  LokiModel({
+class LogModel extends IBaseModel {
+  LogModel({
     required this.streams,
   });
 

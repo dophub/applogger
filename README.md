@@ -14,7 +14,7 @@ Paketi projeye eklemek için 'pubspec.yaml' dosyasına girip altaki kod bluğu e
 
 Paketi import etmek için
 ```dart
-import 'package:dop_logger/dop_logger.dart';
+import 'package:dop_logger/app_logger.dart';
 ```
 
 Paketi init ediyoruz

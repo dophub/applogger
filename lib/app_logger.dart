@@ -1,4 +1,4 @@
-library dop_logger;
+library app_logger;
 
 export 'package:dop_logger/src/logger/loki_logger.dart';
 export 'package:dop_logger/src/logger/http_logger.dart';

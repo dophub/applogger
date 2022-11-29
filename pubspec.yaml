@@ -13,8 +13,9 @@ dependencies:
 
   background_json_parser: any
   dio: ^4.0.6
-  package_info_plus: any
-  device_info_plus: any
+  device_info_plus: ^8.0.0
+  package_info_plus: ^3.0.2
+  battery_plus: ^3.0.2
 
 dev_dependencies:
   flutter_test:

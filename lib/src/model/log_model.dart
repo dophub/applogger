@@ -1,39 +1,24 @@
 import 'package:background_json_parser/background_json_parser.dart';
 
-class LogModel extends IBaseModel {
+import '../cons/enum.dart';
+
+class LogModel<T extends IBaseModel> extends IBaseModel<LogModel> {
   LogModel({
-    required this.streams,
+    required this.type,
+    required this.values,
   });
 
-  StreamElement streams;
+  LogType? type;
+  T? values;
 
   @override
   Map<String, dynamic> toJson() => {
-        "streams": [streams.toJson()],
+        "type": type!.name,
+        "values": values!.convertToJson(),
       };
 
   @override
-  fromJson(Map<String, dynamic> json) {
+  LogModel fromJson(Map<String, dynamic> json) {
     throw UnimplementedError();
   }
-}
-
-class StreamElement {
-  StreamElement({
-    this.stream,
-    this.values,
-  });
-
-  Map<String, String>? stream;
-  String? values;
-
-  Map<String, dynamic> toJson() => {
-        "stream": stream,
-        "values": [
-          [
-            (DateTime.now().microsecondsSinceEpoch * 1000).toString(),
-            values,
-          ]
-        ],
-      };
 }

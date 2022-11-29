@@ -1,9 +1,10 @@
 import 'dart:convert' show jsonEncode;
 import 'package:dop_logger/src/app_info/app_info.dart';
+import 'package:dop_logger/src/model/http_log_model.dart';
 import 'package:flutter/foundation.dart';
 import 'dart:developer' as dev;
 
-import '../../dop_logger.dart';
+import '../../app_logger.dart';
 import '../cons/enum.dart';
 
 /// Log Http by Loki
@@ -22,22 +23,18 @@ class HttpLogger {
     try {
       httpConsolePrint(url, statusCode, header, requestBody, responseBody);
       if (!DopLogger.instance.configuration.httpLog) return;
-      final packageInfo = await AppInfo.instance.getPackageInfo();
-      final deviceInfo = await AppInfo.instance.getDeviceInfo();
-      DopLogger.instance.callBackFun(
-        LogModel(
-          streams: StreamElement(
-            stream: {packageInfo["appName"] ?? "UndefinedApp": LogType.API.name},
-            values: '{"user":${jsonEncode(DopLogger.instance.configuration.user.toJson())},'
-                '"url":"$url","header":${jsonEncode(header)},'
-                '"request_body":${jsonEncode(requestBody)},'
-                '"response_status":"$statusCode",'
-                '"response":$responseBody,'
-                '"app_info":${jsonEncode(packageInfo)},'
-                '"device_info":${jsonEncode(deviceInfo)}}',
-          ),
+      final logModel = LogModel(
+        type: LogType.API,
+        values: HttpLogModel(
+          appInfo: await AppInfo.instance(),
+          url: url,
+          header: jsonEncode(header),
+          requestBody: jsonEncode(requestBody),
+          responseStatus: statusCode.toString(),
+          response: responseBody,
         ),
       );
+      DopLogger.instance.callBackFun(logModel);
     } catch (e) {
       debugPrint('loki logger error: $e');
     }

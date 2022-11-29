@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:dop_logger/dop_logger.dart';
+import 'package:dop_logger/app_logger.dart';
 import 'package:dop_logger/src/logger/exception_logger.dart';
 import 'package:flutter/foundation.dart';
 import 'configuration/configuration.dart';

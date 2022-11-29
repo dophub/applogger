@@ -1,5 +1,6 @@
-class DopLoggerUser {
-  DopLoggerUser({
+
+class AppLoggerUser {
+  AppLoggerUser({
     this.id,
     this.username,
     this.email,

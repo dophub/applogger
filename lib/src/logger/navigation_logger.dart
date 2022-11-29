@@ -1,4 +1,4 @@
-import 'dart:convert';
+import 'package:dop_logger/src/model/navigation_log_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart' show RouteSettings;
 import '../app_info/app_info.dart';
@@ -15,18 +15,15 @@ class NavigationLogger {
   Future<void> log(RouteSettings settings) async {
     try {
       if (!DopLogger.instance.configuration.navigationLog) return;
-      final packageInfo = await AppInfo.instance.getPackageInfo();
-      final deviceInfo = await AppInfo.instance.getDeviceInfo();
-      final lokiModel = LogModel(
-        streams: StreamElement(
-          stream: {packageInfo["appName"] ?? "UndefinedApp": LogType.NAV.name},
-          values: '{"user":${jsonEncode(DopLogger.instance.configuration.user.toJson())},'
-              '"route":"${settings.name}","arguments":"${settings.arguments.toString()}",'
-              '"app_info":${jsonEncode(packageInfo)},'
-              '"device_info":${jsonEncode(deviceInfo)}}',
+      final logModel = LogModel(
+        type: LogType.NAV,
+        values: NavigationLogModel(
+          appInfo: await AppInfo.instance(),
+          route: settings.name.toString(),
+          arguments: settings.arguments.toString(),
         ),
       );
-      DopLogger.instance.callBackFun(lokiModel);
+      DopLogger.instance.callBackFun(logModel);
     } catch (e) {
       debugPrint('loki logger error: $e');
     }

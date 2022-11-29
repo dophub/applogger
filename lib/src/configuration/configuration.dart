@@ -2,7 +2,7 @@ import 'package:dop_logger/src/model/user_model.dart';
 
 /// Paketi init yaptıktan sonra configure edebilmek için yazıldı
 class Configuration {
-  DopLoggerUser _user = DopLoggerUser();
+  AppLoggerUser _user = AppLoggerUser();
 
   /// Http log status
   late bool httpLog;
@@ -16,9 +16,9 @@ class Configuration {
   /// Flutter tarafından hata oluştuğunda uygulama kapansın mı
   bool killAppOnErrorCausedByFlutter = false;
 
-  void setUser(DopLoggerUser user) {
+  void setUser(AppLoggerUser user) {
     _user = user;
   }
 
-  DopLoggerUser get user => _user;
+  AppLoggerUser get user => _user;
 }

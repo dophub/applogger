@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
+import 'package:dop_logger/src/model/exception_log_model.dart';
 import 'package:flutter/material.dart';
 import '../app_info/app_info.dart';
 import '../cons/enum.dart';
@@ -15,14 +16,17 @@ class ExceptionLogger {
 
   Future<void> onError(error, stack) async {
     try {
-      final packageInfo = await AppInfo.instance.getPackageInfo();
-      final deviceInfo = await AppInfo.instance.getDeviceInfo();
-      log("onErrorCausedByFlutter", error: "error: $error \nstack: $stack", name: 'DopLoggerError: ');
+      log(
+        "onErrorCausedByFlutter",
+        error: "error: $error \nstack: $stack",
+        name: 'DopLoggerError: ',
+      );
       final lokiModel = LogModel(
-        streams: StreamElement(
-          stream: {packageInfo["appName"] ?? "UndefinedApp": LogType.ERR.name},
-          values:
-              '{"user":${jsonEncode(DopLogger.instance.configuration.user.toJson())},"error":${jsonEncode(error.toString())},"stack":${jsonEncode(stack.toString())},"app_info":${jsonEncode(packageInfo)},"device_info":${jsonEncode(deviceInfo)}}',
+        type: LogType.ERR,
+        values: ExceptionLogModel(
+          error: error.toString(),
+          stack: jsonEncode(stack.toString()),
+          appInfo: await AppInfo.instance(),
         ),
       );
       DopLogger.instance.callBackFun(lokiModel);
@@ -34,15 +38,17 @@ class ExceptionLogger {
 
   Future<void> onErrorCausedByFlutter(FlutterErrorDetails details) async {
     try {
-      final packageInfo = await AppInfo.instance.getPackageInfo();
-      final deviceInfo = await AppInfo.instance.getDeviceInfo();
-      log("onErrorCausedByFlutter",
-          error: 'exception: ${details.exception} \nstack: ${details.stack}', name: 'DopLoggerError: ');
+      log(
+        "onErrorCausedByFlutter",
+        error: 'exception: ${details.exception} \nstack: ${details.stack}',
+        name: 'DopLoggerError: ',
+      );
       final lokiModel = LogModel(
-        streams: StreamElement(
-          stream: {packageInfo["appName"] ?? "UndefinedApp": LogType.APPERR.name},
-          values:
-              '{"user":${jsonEncode(DopLogger.instance.configuration.user.toJson())},"error":"Error caused by flutter","stack":${jsonEncode(details.exception.toString())} ,"app_info":${jsonEncode(packageInfo)},"device_info":${jsonEncode(deviceInfo)}}',
+        type: LogType.APPERR,
+        values: ExceptionLogModel(
+          error: "Error caused by flutter stack: ${jsonEncode(details.exception.toString())}",
+          stack: jsonEncode(details.exception.toString()),
+          appInfo: await AppInfo.instance(),
         ),
       );
       DopLogger.instance.callBackFun(lokiModel);

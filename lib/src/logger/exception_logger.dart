@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-import 'package:dop_logger/src/model/exception_log_model.dart';
+import 'package:app_logger/src/model/exception_log_model.dart';
 import 'package:flutter/material.dart';
 import '../app_info/app_info.dart';
 import '../cons/enum.dart';
-import '../dop_logger.dart';
+import '../app_logger.dart';
 import '../model/log_model.dart';
 
 /// Get Exception and log it to loki
@@ -19,7 +19,7 @@ class ExceptionLogger {
       log(
         "onErrorCausedByFlutter",
         error: "error: $error \nstack: $stack",
-        name: 'DopLoggerError: ',
+        name: 'AppLogger Error: ',
       );
       final lokiModel = LogModel(
         type: LogType.ERR,
@@ -29,8 +29,8 @@ class ExceptionLogger {
           appInfo: await AppInfo.instance(),
         ),
       );
-      DopLogger.instance.callBackFun(lokiModel);
-      if (DopLogger.instance.configuration.killAppOnError) exit(1);
+      AppLogger.instance.callBackFun(lokiModel);
+      if (AppLogger.instance.configuration.killAppOnError) exit(1);
     } catch (e) {
       debugPrint('loki logger error: $e');
     }
@@ -41,7 +41,7 @@ class ExceptionLogger {
       log(
         "onErrorCausedByFlutter",
         error: 'exception: ${details.exception} \nstack: ${details.stack}',
-        name: 'DopLoggerError: ',
+        name: 'AppLogger Error: ',
       );
       final lokiModel = LogModel(
         type: LogType.APPERR,
@@ -51,8 +51,8 @@ class ExceptionLogger {
           appInfo: await AppInfo.instance(),
         ),
       );
-      DopLogger.instance.callBackFun(lokiModel);
-      if (DopLogger.instance.configuration.killAppOnErrorCausedByFlutter) exit(1);
+      AppLogger.instance.callBackFun(lokiModel);
+      if (AppLogger.instance.configuration.killAppOnErrorCausedByFlutter) exit(1);
     } catch (e) {
       debugPrint('loki logger error: $e');
     }

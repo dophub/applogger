@@ -17,7 +17,7 @@ class ExceptionLogModel extends IBaseModel<ExceptionLogModel> {
   @override
   Map<String, dynamic> toJson() {
     return {
-      "user": DopLogger.instance.configuration.user.toJson(),
+      "user": AppLogger.instance.configuration.user.toJson(),
       "stack": stack,
       "error": error,
       "device_info": appInfo.toMap(),

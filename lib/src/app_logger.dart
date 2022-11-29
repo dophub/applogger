@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:dop_logger/app_logger.dart';
-import 'package:dop_logger/src/logger/exception_logger.dart';
+import 'package:app_logger/app_logger.dart';
+import 'package:app_logger/src/logger/exception_logger.dart';
 import 'package:flutter/foundation.dart';
 import 'configuration/configuration.dart';
 
@@ -8,10 +8,10 @@ typedef AppRunner = FutureOr<void> Function();
 
 typedef AppLoggerCallBack = void Function(LogModel logModel);
 
-class DopLogger {
-  static DopLogger? _instance;
+class AppLogger {
+  static AppLogger? _instance;
 
-  static DopLogger get instance => _instance ??= DopLogger._();
+  static AppLogger get instance => _instance ??= AppLogger._();
 
   /// Paket ayarlarını tutar
   Configuration configuration = Configuration();
@@ -22,7 +22,7 @@ class DopLogger {
   /// log yapıldığı zaman çağırılan fonksiyon eğer null ise loki ye log alır
   late final AppLoggerCallBack callBackFun;
 
-  DopLogger._();
+  AppLogger._();
 
   static Future<void> init(
     String lokiUrl,
@@ -31,10 +31,10 @@ class DopLogger {
     AppRunner appRunner, [
     AppLoggerCallBack? callBackFun,
   ]) async {
-    DopLogger.instance.lokiUrl = lokiUrl;
-    DopLogger.instance.configuration.httpLog = httpLog;
-    DopLogger.instance.configuration.navigationLog = navigationLog;
-    DopLogger.instance.callBackFun = callBackFun ?? LokiLogger().log;
+    AppLogger.instance.lokiUrl = lokiUrl;
+    AppLogger.instance.configuration.httpLog = httpLog;
+    AppLogger.instance.configuration.navigationLog = navigationLog;
+    AppLogger.instance.callBackFun = callBackFun ?? LokiLogger().log;
     runZonedGuarded(
       () async {
         FlutterError.onError = ExceptionLogger.instance.onErrorCausedByFlutter;

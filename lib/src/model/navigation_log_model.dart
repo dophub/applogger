@@ -16,7 +16,7 @@ class NavigationLogModel extends IBaseModel<NavigationLogModel> {
 
   @override
   Map<String, dynamic> toJson() => {
-        "user": DopLogger.instance.configuration.user.toJson(),
+        "user": AppLogger.instance.configuration.user.toJson(),
         "route": route,
         "arguments": arguments,
         "app_info": appInfo,

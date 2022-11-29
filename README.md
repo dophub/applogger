@@ -6,7 +6,7 @@ Loki ile loglama.
 
 Paketi projeye eklemek için 'pubspec.yaml' dosyasına girip altaki kod bluğu ekliyoruz
 ```dart
-  dop_logger:
+  app_logger:
     git:
       url: https://github.com/dophub/applogger.git
       ref: prod-0726
@@ -14,13 +14,13 @@ Paketi projeye eklemek için 'pubspec.yaml' dosyasına girip altaki kod bluğu e
 
 Paketi import etmek için
 ```dart
-import 'package:dop_logger/app_logger.dart';
+import 'package:app_logger/app_logger.dart';
 ```
 
 Paketi init ediyoruz
 ```dart
 void main() {
-  DopLogger.init(
+  AppLogger.init(
     'https://lokiBaseUrl',
     true,
     true,
@@ -31,8 +31,8 @@ void main() {
 
 Daha sonra paketin conguration nini değiştirmek için
 ```dart
-DopLogger.instance.configuration.setUser(
-  DopLoggerUser(id: '123123213123', username: 'Mustafa'),
+AppLogger.instance.configuration.setUser(
+  AppLoggerUser(id: '123123213123', username: 'Mustafa'),
 );
 ```
 

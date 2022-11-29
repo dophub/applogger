@@ -1,10 +1,10 @@
-import 'package:dop_logger/app_logger.dart';
+import 'package:app_logger/app_logger.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
 
 void main() {
-  DopLogger.init(
+  AppLogger.init(
     'https://loki.restoranisim.app',
     true,
     true,
@@ -40,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   initState() {
     super.initState();
-    DopLogger.instance.configuration.setUser(
+    AppLogger.instance.configuration.setUser(
       AppLoggerUser(id: '123123213123', username: 'Mustafa'),
     );
   }

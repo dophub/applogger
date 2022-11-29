@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:dop_logger/app_logger.dart';
+import 'package:app_logger/app_logger.dart';
 import 'package:flutter/foundation.dart';
 import 'package:dio/dio.dart';
 
@@ -7,7 +7,7 @@ import 'package:dio/dio.dart';
 class LokiLogger {
   void log(LogModel lokiModel) {
     try {
-      final url = DopLogger.instance.lokiUrl;
+      final url = AppLogger.instance.lokiUrl;
       final body = lokiModel.convertToJson();
       Dio()
           .post(

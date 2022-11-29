@@ -1,4 +1,4 @@
-import 'package:dop_logger/src/model/user_model.dart';
+import 'package:app_logger/src/model/user_model.dart';
 
 /// Paketi init yaptıktan sonra configure edebilmek için yazıldı
 class Configuration {

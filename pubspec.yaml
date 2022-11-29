@@ -1,4 +1,4 @@
-name: dop_logger
+name: app_logger
 description: Log all Http request and Navigation.
 version: 0.0.1
 homepage:

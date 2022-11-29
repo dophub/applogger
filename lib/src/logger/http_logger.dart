@@ -1,6 +1,6 @@
 import 'dart:convert' show jsonEncode;
-import 'package:dop_logger/src/app_info/app_info.dart';
-import 'package:dop_logger/src/model/http_log_model.dart';
+import 'package:app_logger/src/app_info/app_info.dart';
+import 'package:app_logger/src/model/http_log_model.dart';
 import 'package:flutter/foundation.dart';
 import 'dart:developer' as dev;
 
@@ -22,7 +22,7 @@ class HttpLogger {
   }) async {
     try {
       httpConsolePrint(url, statusCode, header, requestBody, responseBody);
-      if (!DopLogger.instance.configuration.httpLog) return;
+      if (!AppLogger.instance.configuration.httpLog) return;
       final logModel = LogModel(
         type: LogType.API,
         values: HttpLogModel(
@@ -34,7 +34,7 @@ class HttpLogger {
           response: responseBody,
         ),
       );
-      DopLogger.instance.callBackFun(logModel);
+      AppLogger.instance.callBackFun(logModel);
     } catch (e) {
       debugPrint('loki logger error: $e');
     }

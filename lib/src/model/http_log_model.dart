@@ -22,7 +22,7 @@ class HttpLogModel extends IBaseModel<HttpLogModel> {
 
   @override
   Map<String, dynamic> toJson() => {
-        "user": DopLogger.instance.configuration.user.toJson(),
+        "user": AppLogger.instance.configuration.user.toJson(),
         "url": url,
         "header": header,
         "request_body": requestBody,

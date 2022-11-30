@@ -14,7 +14,7 @@ class LogModel<T extends IBaseModel> extends IBaseModel<LogModel> {
   @override
   Map<String, dynamic> toJson() => {
         "type": type!.name,
-        "values": values!.convertToJson(),
+        "values": values!.toJson(),
       };
 
   @override

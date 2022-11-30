@@ -14,10 +14,10 @@ class HttpLogModel extends IBaseModel<HttpLogModel> {
   });
 
   String url;
-  String header;
-  String requestBody;
+  Map<String, String> header;
+  Map<String, dynamic> requestBody;
   String responseStatus;
-  String response;
+  Map<String, dynamic> response;
   AppInfo appInfo;
 
   @override

@@ -16,9 +16,9 @@ class HttpLogger {
   Future<void> log({
     required String url,
     required int statusCode,
-    required Map<String, String>? header,
+    required Map<String, String> header,
     required Map<String, dynamic> requestBody,
-    required String responseBody,
+    required Map<String, dynamic> responseBody,
   }) async {
     try {
       httpConsolePrint(url, statusCode, header, requestBody, responseBody);
@@ -28,8 +28,8 @@ class HttpLogger {
         values: HttpLogModel(
           appInfo: await AppInfo.instance(),
           url: url,
-          header: jsonEncode(header),
-          requestBody: jsonEncode(requestBody),
+          header: header,
+          requestBody: requestBody,
           responseStatus: statusCode.toString(),
           response: responseBody,
         ),
@@ -45,7 +45,7 @@ class HttpLogger {
     int statusCode,
     Map<String, String>? header,
     Map<String, dynamic> requestBody,
-    String responseBody,
+    Map<String, dynamic> responseBody,
   ) {
     dev.log(
         '┌─ Http Request ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────');

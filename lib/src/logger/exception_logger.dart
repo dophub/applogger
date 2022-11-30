@@ -32,7 +32,7 @@ class ExceptionLogger {
       AppLogger.instance.callBackFun(lokiModel);
       if (AppLogger.instance.configuration.killAppOnError) exit(1);
     } catch (e) {
-      debugPrint('loki logger error: $e');
+      debugPrint('App logger error: $e');
     }
   }
 
@@ -54,7 +54,7 @@ class ExceptionLogger {
       AppLogger.instance.callBackFun(lokiModel);
       if (AppLogger.instance.configuration.killAppOnErrorCausedByFlutter) exit(1);
     } catch (e) {
-      debugPrint('loki logger error: $e');
+      debugPrint('App logger error: $e');
     }
   }
 }

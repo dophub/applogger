@@ -28,7 +28,6 @@ class HttpLogModel extends IBaseModel<HttpLogModel> {
         "request_body": requestBody,
         "response_status": responseStatus,
         "response": response,
-        "app_info": appInfo,
         "device_info": appInfo.toMap(),
       };
 

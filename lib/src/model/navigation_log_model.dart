@@ -19,7 +19,6 @@ class NavigationLogModel extends IBaseModel<NavigationLogModel> {
         "user": AppLogger.instance.configuration.user.toJson(),
         "route": route,
         "arguments": arguments,
-        "app_info": appInfo,
         "device_info": appInfo.toMap(),
       };
 

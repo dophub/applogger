@@ -19,7 +19,7 @@ class LokiLogger {
           )
           .ignore();
     } catch (e) {
-      debugPrint('loki logger error: $e');
+      debugPrint('App logger error: $e');
     }
   }
 }

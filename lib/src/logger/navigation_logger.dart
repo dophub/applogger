@@ -25,7 +25,7 @@ class NavigationLogger {
       );
       AppLogger.instance.callBackFun(logModel);
     } catch (e) {
-      debugPrint('loki logger error: $e');
+      debugPrint('App logger error: $e');
     }
   }
 }

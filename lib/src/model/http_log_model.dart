@@ -17,7 +17,7 @@ class HttpLogModel extends IBaseModel<HttpLogModel> {
   Map<String, String> header;
   Map<String, dynamic> requestBody;
   String responseStatus;
-  Map<String, dynamic> response;
+  String response;
   AppInfo appInfo;
 
   @override

@@ -18,7 +18,7 @@ class HttpLogger {
     required int statusCode,
     required Map<String, String> header,
     required Map<String, dynamic> requestBody,
-    required Map<String, dynamic> responseBody,
+    required String responseBody,
   }) async {
     try {
       httpConsolePrint(url, statusCode, header, requestBody, responseBody);
@@ -45,7 +45,7 @@ class HttpLogger {
     int statusCode,
     Map<String, String>? header,
     Map<String, dynamic> requestBody,
-    Map<String, dynamic> responseBody,
+    String responseBody,
   ) {
     dev.log(
         '┌─ Http Request ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────');

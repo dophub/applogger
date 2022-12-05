@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:background_json_parser/background_json_parser.dart';
 
 import '../../app_logger.dart';

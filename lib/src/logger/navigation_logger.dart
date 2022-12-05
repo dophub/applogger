@@ -1,6 +1,6 @@
 import 'package:app_logger/src/model/navigation_log_model.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/widgets.dart' show NavigatorObserver, Route, RouteSettings;
+import 'package:flutter/widgets.dart' show NavigatorObserver, Route;
 import '../app_info/app_info.dart';
 import '../cons/enum.dart';
 import '../app_logger.dart';

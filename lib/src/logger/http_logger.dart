@@ -1,4 +1,3 @@
-import 'dart:convert' show jsonEncode;
 import 'package:app_logger/src/app_info/app_info.dart';
 import 'package:app_logger/src/model/http_log_model.dart';
 import 'package:flutter/foundation.dart';

@@ -64,12 +64,12 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void navigationLog() {
-    NavigationLogger.instance.log(
+    /*NavigationLogger.instance.log(
       const RouteSettings(
         name: 'AppLoggerDetailScreen',
         arguments: {'userName': 'Mto', 'userId': 1},
       ),
-    );
+    );*/
   }
 
   Future<void> getRequest() async {

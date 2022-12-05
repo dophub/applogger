@@ -8,17 +8,23 @@ class NavigationLogModel extends IBaseModel<NavigationLogModel> {
     required this.route,
     required this.arguments,
     required this.appInfo,
+    required this.previousRoute,
+    required this.previousArguments,
   });
 
-  String route;
-  String arguments;
-  AppInfo appInfo;
+  final String route;
+  final String arguments;
+  final String previousRoute;
+  final String previousArguments;
+  final AppInfo appInfo;
 
   @override
   Map<String, dynamic> toJson() => {
         "user": AppLogger.instance.configuration.user.toJson(),
         "route": route,
         "arguments": arguments,
+        "previous_route": previousRoute,
+        "previous_arguments": previousArguments,
         "device_info": appInfo.toMap(),
       };
 

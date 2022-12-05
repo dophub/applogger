@@ -1,10 +1,14 @@
+import 'dart:html';
+
 import 'package:background_json_parser/background_json_parser.dart';
 
 import '../../app_logger.dart';
 import '../app_info/app_info.dart';
+import '../cons/enum.dart';
 
 class NavigationLogModel extends IBaseModel<NavigationLogModel> {
   NavigationLogModel({
+    required this.navEvent,
     required this.route,
     required this.arguments,
     required this.appInfo,
@@ -12,6 +16,7 @@ class NavigationLogModel extends IBaseModel<NavigationLogModel> {
     required this.previousArguments,
   });
 
+  final NavigationEventEnum navEvent;
   final String route;
   final String arguments;
   final String previousRoute;
@@ -20,6 +25,7 @@ class NavigationLogModel extends IBaseModel<NavigationLogModel> {
 
   @override
   Map<String, dynamic> toJson() => {
+        "event": navEvent.name,
         "user": AppLogger.instance.configuration.user.toJson(),
         "route": route,
         "arguments": arguments,

@@ -6,4 +6,4 @@
 /// [LogType.LOG] General log
 enum LogType { API, NAV, ERR, APPERR, LOG }
 
-enum NavigationEnum { didPop, didPush, didRemove, didReplace }
+enum NavigationEventEnum { didPop, didPush, didRemove, didReplace }

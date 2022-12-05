@@ -17,30 +17,30 @@ class NavigationLogger extends NavigatorObserver {
   @override
   void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
     _instance.history.removeLast();
-    _log(NavigationEnum.didPop, route, previousRoute);
+    _log(NavigationEventEnum.didPop, route, previousRoute);
   }
 
   @override
   void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
     _instance.history.add(route);
-    _log(NavigationEnum.didPush, route, previousRoute);
+    _log(NavigationEventEnum.didPush, route, previousRoute);
   }
 
   @override
   void didRemove(Route<dynamic> route, Route<dynamic>? previousRoute) {
     _instance.history.remove(route);
-    _log(NavigationEnum.didRemove, route, previousRoute);
+    _log(NavigationEventEnum.didRemove, route, previousRoute);
   }
 
   @override
   void didReplace({Route<dynamic>? newRoute, Route<dynamic>? oldRoute}) {
     int oldRouteIndex = _instance.history.indexOf(oldRoute);
     _instance.history.replaceRange(oldRouteIndex, oldRouteIndex + 1, [newRoute]);
-    _log(NavigationEnum.didReplace, newRoute, oldRoute);
+    _log(NavigationEventEnum.didReplace, newRoute, oldRoute);
   }
 
   Future<void> _log(
-    NavigationEnum event,
+    NavigationEventEnum event,
     Route<dynamic>? route,
     Route<dynamic>? previousRoute,
   ) async {
@@ -61,6 +61,7 @@ class NavigationLogger extends NavigatorObserver {
       final logModel = LogModel(
         type: LogType.NAV,
         values: NavigationLogModel(
+          navEvent: event,
           appInfo: await AppInfo.instance(),
           route: routeName.toString(),
           arguments: arguments.toString(),

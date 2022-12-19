@@ -11,7 +11,7 @@ class ExceptionLogModel extends IBaseModel<ExceptionLogModel> {
   });
 
   String stack;
-  String error;
+  Object error;
   AppInfo appInfo;
 
   @override
@@ -19,7 +19,7 @@ class ExceptionLogModel extends IBaseModel<ExceptionLogModel> {
     return {
       "user": AppLogger.instance.configuration.user.toJson(),
       "stack": stack,
-      "error": error,
+      "error": error.toString(),
       "device_info": appInfo.toMap(),
     };
   }

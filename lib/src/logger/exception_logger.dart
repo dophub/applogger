@@ -16,8 +16,9 @@ class ExceptionLogger {
 
   Future<void> onError(error, stack) async {
     try {
+      if (AppLogger.instance.onError != null) AppLogger.instance.onError!(error, stack);
       log(
-        "onErrorCausedByFlutter",
+        "onError",
         error: "error: $error \nstack: $stack",
         name: 'AppLogger Error: ',
       );

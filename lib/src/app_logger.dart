@@ -8,6 +8,8 @@ typedef AppRunner = FutureOr<void> Function();
 
 typedef AppLoggerCallBack = void Function(LogModel logModel);
 
+typedef ErrorCallBack = void Function(Object error, StackTrace stack);
+
 class AppLogger {
   static AppLogger? _instance;
 
@@ -22,6 +24,9 @@ class AppLogger {
   /// log yapıldığı zaman çağırılan fonksiyon eğer null ise loki ye log alır
   late final AppLoggerCallBack callBackFun;
 
+  /// Hata oluştuğu zaman çalışır
+  late final ErrorCallBack? onError;
+
   AppLogger._();
 
   static Future<void> init(
@@ -29,11 +34,13 @@ class AppLogger {
     bool httpLog,
     bool navigationLog,
     AppRunner appRunner, [
+    ErrorCallBack? onError,
     AppLoggerCallBack? callBackFun,
   ]) async {
     AppLogger.instance.lokiUrl = lokiUrl;
     AppLogger.instance.configuration.httpLog = httpLog;
     AppLogger.instance.configuration.navigationLog = navigationLog;
+    AppLogger.instance.onError = onError;
     AppLogger.instance.callBackFun = callBackFun ?? LokiLogger().log;
     runZonedGuarded(
       () async {

@@ -33,10 +33,10 @@ class AppLogger {
     String lokiUrl,
     bool httpLog,
     bool navigationLog,
-    AppRunner appRunner, [
+    AppRunner appRunner, {
     ErrorCallBack? onError,
     AppLoggerCallBack? callBackFun,
-  ]) async {
+  }) async {
     AppLogger.instance.lokiUrl = lokiUrl;
     AppLogger.instance.configuration.httpLog = httpLog;
     AppLogger.instance.configuration.navigationLog = navigationLog;

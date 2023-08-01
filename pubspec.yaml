@@ -13,8 +13,8 @@ dependencies:
 
   background_json_parser: any
   dio: ^4.0.6
-  device_info_plus: ^8.0.0
-  package_info_plus: ^3.0.2
+  device_info_plus: ^9.0.2
+  package_info_plus: ^4.0.2
   battery_plus: ^3.0.2
 
 dev_dependencies:

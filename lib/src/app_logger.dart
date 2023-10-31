@@ -21,6 +21,9 @@ class AppLogger {
   /// Laki BaseUrl
   late String lokiUrl;
 
+  /// Laki Header
+  Map<String, dynamic>? lokiHeaders;
+
   /// log yapıldığı zaman çağırılan fonksiyon eğer null ise loki ye log alır
   late final AppLoggerCallBack callBackFun;
 
@@ -34,10 +37,12 @@ class AppLogger {
     bool httpLog,
     bool navigationLog,
     AppRunner appRunner, {
+    Map<String, dynamic>? lokiHeaders,
     ErrorCallBack? onError,
     AppLoggerCallBack? callBackFun,
   }) async {
     AppLogger.instance.lokiUrl = lokiUrl;
+    AppLogger.instance.lokiHeaders = lokiHeaders;
     AppLogger.instance.configuration.httpLog = httpLog;
     AppLogger.instance.configuration.navigationLog = navigationLog;
     AppLogger.instance.onError = onError;

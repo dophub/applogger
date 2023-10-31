@@ -8,6 +8,7 @@ class LokiLogger {
   void log(LogModel lokiModel) {
     try {
       final url = AppLogger.instance.lokiUrl;
+      final headers = AppLogger.instance.lokiHeaders;
       final body = lokiModel.convertToJson();
       Dio()
           .post(
@@ -15,6 +16,7 @@ class LokiLogger {
             data: body,
             options: Options(
               contentType: "application/json",
+              headers: headers,
             ),
           )
           .ignore();

@@ -5,16 +5,18 @@ import '../cons/enum.dart';
 class LogModel<T extends IBaseModel> extends IBaseModel<LogModel> {
   LogModel({
     required this.type,
-    required this.values,
+    this.values,
+    this.mapValues,
   });
 
-  LogType? type;
+  LogType type;
   T? values;
+  Map<String, dynamic>? mapValues;
 
   @override
   Map<String, dynamic> toJson() => {
-        "type": type!.name,
-        "values": values!.toJson(),
+        "type": type.name,
+        "values": mapValues ?? values?.toJson(),
       };
 
   @override

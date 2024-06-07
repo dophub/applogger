@@ -6,3 +6,4 @@ export 'package:app_logger/src/logger/navigation_logger.dart';
 export 'package:app_logger/src/app_logger.dart';
 export 'package:app_logger/src/model/user_model.dart';
 export 'package:app_logger/src/model/log_model.dart';
+export 'package:app_logger/src/cons/enum.dart';

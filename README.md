@@ -11,7 +11,7 @@ add this line to pubspec.yaml
 ```yaml
 
 dependencies:
-  app_logger: ^0.0.2
+  app_logger: ^0.0.3
 
 ```
 
@@ -27,7 +27,7 @@ We init the package
 ```dart
 void main() {
   AppLogger.init(
-    'https://lokiBaseUrl',
+    'https://example.com',
     true,
     true,
         () => runApp(const MyApp()),
@@ -70,17 +70,17 @@ Future<void> getRequest() async {
 
 ## Parameters
 
-| Parameter     | Descriptions                                                                      |                                                            |
-|---------------|-----------------------------------------------------------------------------------|------------------------------------------------------------|
-| lokiUrl       | BaseUrl                                                                           |                                                            |
-| lokiHeaders   | Laki Header                                                                       |                                                            |
-| callBackFun   | When the log is made, the function called receives the log to Loki if it is null. |                                                            |
-| onError       | Runs when an error occurs                                                         |                                                            |
-| configuration |                                                                                   |                                                            |
-|               | httpLog                                                                           | Http log status                                            |
-|               | navigationLog                                                                     | Navigation log status                                      |
-|               | killAppOnError                                                                    | Should the application close when an error occurs?         |
-|               | killAppOnErrorCausedByFlutter                                                     | Should Flutter close the application when an error occurs? |
-|               | user                                                                              | user                                                       |
+| Parameter     | Descriptions                                                                                                                        |                                                            |
+|---------------|-------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------|
+| baseUrl       | BaseUrl                                                                                                                             |                                                            |
+| headers       | Header                                                                                                                              |                                                            |
+| callBackFun   | If is not null, the function is called when a log is taken. If it is null, a post request is sent to the endpoint given in baseUrl. |                                                            |
+| onError       | Runs when an error occurs                                                                                                           |                                                            |
+| configuration |                                                                                                                                     |                                                            |
+|               | httpLog                                                                                                                             | Http log status                                            |
+|               | navigationLog                                                                                                                       | Navigation log status                                      |
+|               | killAppOnError                                                                                                                      | Should the application close when an error occurs?         |
+|               | killAppOnErrorCausedByFlutter                                                                                                       | Should Flutter close the application when an error occurs? |
+|               | user                                                                                                                                | user                                                       |
 
 

@@ -3,13 +3,13 @@ import 'package:app_logger/app_logger.dart';
 import 'package:flutter/foundation.dart';
 import 'package:dio/dio.dart';
 
-/// Push Log to Loki
-class LokiLogger {
-  void log(LogModel lokiModel) {
+/// Push Log
+class Logger {
+  void log(LogModel model) {
     try {
-      final url = AppLogger.instance.lokiUrl;
-      final headers = AppLogger.instance.lokiHeaders;
-      final body = lokiModel.convertToJson();
+      final url = AppLogger.instance.baseUrl;
+      final headers = AppLogger.instance.headers;
+      final body = model.convertToJson();
       Dio()
           .post(
             url,

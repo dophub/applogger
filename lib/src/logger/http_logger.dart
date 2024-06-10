@@ -5,7 +5,7 @@ import 'dart:developer' as dev;
 
 import '../../app_logger.dart';
 
-/// Log Http by Loki
+/// Log Http
 class HttpLogger {
   static HttpLogger? _instance;
 

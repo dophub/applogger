@@ -19,12 +19,12 @@ class AppLogger {
   Configuration configuration = Configuration();
 
   /// BaseUrl
-  late String lokiUrl;
+  late String baseUrl;
 
-  /// Laki Header
-  Map<String, dynamic>? lokiHeaders;
+  /// Header
+  Map<String, dynamic>? headers;
 
-  /// When the log is made, the function called receives the log to Loki if it is null.
+  /// If is not null, the function is called when a log is taken. If it is null, a post request is sent to the endpoint given in baseUrl.
   late final AppLoggerCallBack callBackFun;
 
   /// Runs when an error occurs
@@ -33,20 +33,20 @@ class AppLogger {
   AppLogger._();
 
   static Future<void> init(
-    String lokiUrl,
+    String baseUrl,
     bool httpLog,
     bool navigationLog,
     AppRunner appRunner, {
-    Map<String, dynamic>? lokiHeaders,
+    Map<String, dynamic>? headers,
     ErrorCallBack? onError,
     AppLoggerCallBack? callBackFun,
   }) async {
-    AppLogger.instance.lokiUrl = lokiUrl;
-    AppLogger.instance.lokiHeaders = lokiHeaders;
+    AppLogger.instance.baseUrl = baseUrl;
+    AppLogger.instance.headers = headers;
     AppLogger.instance.configuration.httpLog = httpLog;
     AppLogger.instance.configuration.navigationLog = navigationLog;
     AppLogger.instance.onError = onError;
-    AppLogger.instance.callBackFun = callBackFun ?? LokiLogger().log;
+    AppLogger.instance.callBackFun = callBackFun ?? Logger().log;
     runZonedGuarded(
       () async {
         FlutterError.onError = ExceptionLogger.instance.onErrorCausedByFlutter;

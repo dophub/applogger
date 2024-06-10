@@ -8,7 +8,7 @@ import '../cons/enum.dart';
 import '../app_logger.dart';
 import '../model/log_model.dart';
 
-/// Get Exception and log it to loki
+/// Get Exception and log
 class ExceptionLogger {
   static ExceptionLogger? _instance;
 
@@ -22,7 +22,7 @@ class ExceptionLogger {
         error: "error: $error \nstack: $stack",
         name: 'AppLogger Error: ',
       );
-      final lokiModel = LogModel(
+      final model = LogModel(
         type: LogType.ERR,
         values: ExceptionLogModel(
           error: error.toString(),
@@ -30,7 +30,7 @@ class ExceptionLogger {
           appInfo: await AppInfo.instance(),
         ),
       );
-      AppLogger.instance.callBackFun(lokiModel);
+      AppLogger.instance.callBackFun(model);
       if (AppLogger.instance.configuration.killAppOnError) exit(1);
     } catch (e) {
       debugPrint('App logger error: $e');
@@ -44,7 +44,7 @@ class ExceptionLogger {
         error: 'exception: ${details.exception} \nstack: ${details.stack}',
         name: 'AppLogger Error: ',
       );
-      final lokiModel = LogModel(
+      final model = LogModel(
         type: LogType.APPERR,
         values: ExceptionLogModel(
           error: "Error caused by flutter stack: ${jsonEncode(details.exception.toString())}",
@@ -52,7 +52,7 @@ class ExceptionLogger {
           appInfo: await AppInfo.instance(),
         ),
       );
-      AppLogger.instance.callBackFun(lokiModel);
+      AppLogger.instance.callBackFun(model);
       if (AppLogger.instance.configuration.killAppOnErrorCausedByFlutter) exit(1);
     } catch (e) {
       debugPrint('App logger error: $e');

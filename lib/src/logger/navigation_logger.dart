@@ -6,7 +6,7 @@ import '../cons/enum.dart';
 import '../app_logger.dart';
 import '../model/log_model.dart';
 
-/// Log User Navigation by Loki
+/// Log User Navigation
 class NavigationLogger extends NavigatorObserver {
   final List<Route<dynamic>?> history = <Route<dynamic>?>[];
 

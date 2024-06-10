@@ -1,23 +1,29 @@
-<!-- 
-Loki ile loglama. 
--->
+[<img alt="alt_text" width="240px" src="https://cdn.buymeacoffee.com/buttons/default-orange.png" />](https://www.buymeacoffee.com/mustafahusF)
 
-## Kullanımı
+# app_logger
 
-Paketi projeye eklemek için 'pubspec.yaml' dosyasına girip altaki kod bluğu ekliyoruz
-```dart
-  app_logger:
-    git:
-      url: https://github.com/dophub/applogger.git
-      ref: prod-0726
+A package for log exception, http request and navigation
+
+## Usage
+
+add this line to pubspec.yaml
+
+```yaml
+
+dependencies:
+  app_logger: ^0.0.2
+
 ```
 
-Paketi import etmek için
+import package
+
 ```dart
+
 import 'package:app_logger/app_logger.dart';
+
 ```
 
-Paketi init ediyoruz
+We init the package
 ```dart
 void main() {
   AppLogger.init(
@@ -29,26 +35,22 @@ void main() {
 }
 ```
 
-Daha sonra paketin conguration nini değiştirmek için
+Then to change the configuration of the package
 ```dart
 AppLogger.instance.configuration.setUser(
   AppLoggerUser(id: '123123213123', username: 'Mustafa'),
 );
 ```
 
-Navigation Logger için
+Navigation Logger
 ```dart
-void navigationLog() {
-  NavigationLogger.instance.log(
-    const RouteSettings(
-      name: 'AppLoggerDetailScreen',
-      arguments: {'userName': 'Mto', 'userId': 1},
-    ),
-  );
-}
+MaterialApp(
+  navigatorObservers: [NavigationLogger.instance],
+  onGenerateRoute: MyRouteFactory().main.onGenerateRoute,
+);
 ```
 
-Api Logger için
+Api Logger
 ```dart
 Future<void> getRequest() async {
   final uri = Uri.https('jsonplaceholder.typicode.com', 'todos/1');
@@ -66,19 +68,19 @@ Future<void> getRequest() async {
 }
 ```
 
+## Parameters
 
-/// Configuration içinde olan parametreler
-/// kullanıcı bilgileri
-* user
+| Parameter     | Descriptions                                                                      |                                                            |
+|---------------|-----------------------------------------------------------------------------------|------------------------------------------------------------|
+| lokiUrl       | BaseUrl                                                                           |                                                            |
+| lokiHeaders   | Laki Header                                                                       |                                                            |
+| callBackFun   | When the log is made, the function called receives the log to Loki if it is null. |                                                            |
+| onError       | Runs when an error occurs                                                         |                                                            |
+| configuration |                                                                                   |                                                            |
+|               | httpLog                                                                           | Http log status                                            |
+|               | navigationLog                                                                     | Navigation log status                                      |
+|               | killAppOnError                                                                    | Should the application close when an error occurs?         |
+|               | killAppOnErrorCausedByFlutter                                                     | Should Flutter close the application when an error occurs? |
+|               | user                                                                              | user                                                       |
 
-/// Http log status
-* httpLog
 
-/// Navigation log status
-* navigationLog
-
-/// Hata oluştuğunda uygulama kapansın mı
-* killAppOnError
-
-/// Flutter tarafından hata oluştuğunda uygulama kapansın mı
-* killAppOnErrorCausedByFlutter

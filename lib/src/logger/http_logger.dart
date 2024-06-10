@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'dart:developer' as dev;
 
 import '../../app_logger.dart';
-import '../cons/enum.dart';
 
 /// Log Http by Loki
 class HttpLogger {

@@ -10,10 +10,10 @@ class Configuration {
   /// Navigation log status
   late bool navigationLog;
 
-  /// Hata oluştuğunda uygulama kapansın mı
+  /// Should the application close when an error occurs?
   bool killAppOnError = false;
 
-  /// Flutter tarafından hata oluştuğunda uygulama kapansın mı
+  /// Should Flutter close the application when an error occurs?
   bool killAppOnErrorCausedByFlutter = false;
 
   void setUser(AppLoggerUser user) {

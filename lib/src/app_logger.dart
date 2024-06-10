@@ -15,19 +15,19 @@ class AppLogger {
 
   static AppLogger get instance => _instance ??= AppLogger._();
 
-  /// Paket ayarlarını tutar
+  /// Holds package settings
   Configuration configuration = Configuration();
 
-  /// Laki BaseUrl
+  /// BaseUrl
   late String lokiUrl;
 
   /// Laki Header
   Map<String, dynamic>? lokiHeaders;
 
-  /// log yapıldığı zaman çağırılan fonksiyon eğer null ise loki ye log alır
+  /// When the log is made, the function called receives the log to Loki if it is null.
   late final AppLoggerCallBack callBackFun;
 
-  /// Hata oluştuğu zaman çalışır
+  /// Runs when an error occurs
   late final ErrorCallBack? onError;
 
   AppLogger._();

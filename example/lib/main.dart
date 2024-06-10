@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 void main() {
   AppLogger.init(
-    'https://loki.restoranisim.app',
+    'https://example.com',
     true,
     true,
     () => runApp(const MyApp()),

@@ -4,6 +4,6 @@
 /// [LogType.ERR] Exception error
 /// [LogType.APPERR] Framework Error
 /// [LogType.LOG] General log
-enum LogType { API, NAV, ERR, APPERR, LOG }
+enum LogType { API, NAV, ERR, APPERR, LOG, POSLOG }
 
 enum NavigationEventEnum { didPop, didPush, didRemove, didReplace }

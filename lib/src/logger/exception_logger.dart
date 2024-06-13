@@ -22,12 +22,14 @@ class ExceptionLogger {
         error: "error: $error \nstack: $stack",
         name: 'AppLogger Error: ',
       );
+      final app = await AppInfo.instance();
       final model = LogModel(
-        type: LogType.ERR,
+        type: app.appName,
+        id: LogType.ERR,
         values: ExceptionLogModel(
           error: error.toString(),
           stack: jsonEncode(stack.toString()),
-          appInfo: await AppInfo.instance(),
+          appInfo: app,
         ),
       );
       AppLogger.instance.callBackFun(model);
@@ -44,12 +46,14 @@ class ExceptionLogger {
         error: 'exception: ${details.exception} \nstack: ${details.stack}',
         name: 'AppLogger Error: ',
       );
+      final app = await AppInfo.instance();
       final model = LogModel(
-        type: LogType.APPERR,
+        type: app.appName,
+        id: LogType.APPERR,
         values: ExceptionLogModel(
           error: "Error caused by flutter stack: ${jsonEncode(details.exception.toString())}",
           stack: jsonEncode(details.exception.toString()),
-          appInfo: await AppInfo.instance(),
+          appInfo: app,
         ),
       );
       AppLogger.instance.callBackFun(model);

@@ -21,10 +21,12 @@ class HttpLogger {
     try {
       httpConsolePrint(url, statusCode, header, requestBody, responseBody);
       if (!AppLogger.instance.configuration.httpLog) return;
+      final app = await AppInfo.instance();
       final logModel = LogModel(
-        type: LogType.API,
+        type: app.appName,
+        id: LogType.API,
         values: HttpLogModel(
-          appInfo: await AppInfo.instance(),
+          appInfo: app,
           url: url,
           header: header,
           requestBody: requestBody,

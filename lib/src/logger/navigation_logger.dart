@@ -58,13 +58,11 @@ class NavigationLogger extends NavigatorObserver {
         previousRouteName = previousRoute.settings.name;
         previousArguments = previousRoute.settings.arguments.toString();
       }
-      final app = await AppInfo.instance();
       final logModel = LogModel(
-        type: app.appName,
         id: LogType.NAV,
         data: NavigationLogModel(
           navEvent: event,
-          appInfo: app,
+          appInfo: await AppInfo.instance(),
           route: routeName.toString(),
           arguments: arguments.toString(),
           previousRoute: previousRouteName.toString(),

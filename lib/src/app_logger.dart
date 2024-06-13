@@ -21,6 +21,9 @@ class AppLogger {
   /// BaseUrl
   late String baseUrl;
 
+  /// app id
+  late final String appId;
+
   /// Header
   Map<String, dynamic>? headers;
 
@@ -32,11 +35,12 @@ class AppLogger {
 
   AppLogger._();
 
-  static Future<void> init(
-    String baseUrl,
-    bool httpLog,
-    bool navigationLog,
-    AppRunner appRunner, {
+  static Future<void> init({
+    required String baseUrl,
+    required bool httpLog,
+    required bool navigationLog,
+    required AppRunner appRunner,
+    required String appId,
     Map<String, dynamic>? headers,
     ErrorCallBack? onError,
     AppLoggerCallBack? callBackFun,
@@ -47,6 +51,7 @@ class AppLogger {
     AppLogger.instance.configuration.navigationLog = navigationLog;
     AppLogger.instance.onError = onError;
     AppLogger.instance.callBackFun = callBackFun ?? Logger().log;
+    AppLogger.instance.appId = appId;
     runZonedGuarded(
       () async {
         FlutterError.onError = ExceptionLogger.instance.onErrorCausedByFlutter;

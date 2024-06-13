@@ -5,10 +5,11 @@ import 'package:http/http.dart' as http;
 
 void main() {
   AppLogger.init(
-    'https://example.com',
-    true,
-    true,
-    () => runApp(const MyApp()),
+    baseUrl: 'https://example.com',
+    httpLog: true,
+    navigationLog: true,
+    appId: 'example',
+    appRunner: () => runApp(const MyApp()),
   );
 }
 

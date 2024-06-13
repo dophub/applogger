@@ -6,20 +6,20 @@ class LogModel<T extends IBaseModel> extends IBaseModel<LogModel> {
   LogModel({
     required this.type,
     required this.id,
-    this.values,
-    this.mapValues,
+    this.data,
+    this.mapData,
   });
 
   String type;
   LogType id;
-  T? values;
-  Map<String, dynamic>? mapValues;
+  T? data;
+  Map<String, dynamic>? mapData;
 
   @override
   Map<String, dynamic> toJson() => {
         "type": type,
         "id": id.name,
-        "values": mapValues ?? values?.toJson(),
+        "data": mapData ?? data?.toJson(),
       };
 
   @override

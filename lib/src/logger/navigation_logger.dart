@@ -62,7 +62,7 @@ class NavigationLogger extends NavigatorObserver {
       final logModel = LogModel(
         type: app.appName,
         id: LogType.NAV,
-        values: NavigationLogModel(
+        data: NavigationLogModel(
           navEvent: event,
           appInfo: app,
           route: routeName.toString(),

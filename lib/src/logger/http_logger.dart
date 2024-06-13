@@ -25,7 +25,7 @@ class HttpLogger {
       final logModel = LogModel(
         type: app.appName,
         id: LogType.API,
-        values: HttpLogModel(
+        data: HttpLogModel(
           appInfo: app,
           url: url,
           header: header,

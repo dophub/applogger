@@ -26,7 +26,7 @@ class ExceptionLogger {
       final model = LogModel(
         type: app.appName,
         id: LogType.ERR,
-        values: ExceptionLogModel(
+        data: ExceptionLogModel(
           error: error.toString(),
           stack: jsonEncode(stack.toString()),
           appInfo: app,
@@ -50,7 +50,7 @@ class ExceptionLogger {
       final model = LogModel(
         type: app.appName,
         id: LogType.APPERR,
-        values: ExceptionLogModel(
+        data: ExceptionLogModel(
           error: "Error caused by flutter stack: ${jsonEncode(details.exception.toString())}",
           stack: jsonEncode(details.exception.toString()),
           appInfo: app,

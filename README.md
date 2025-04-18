@@ -11,7 +11,7 @@ add this line to pubspec.yaml
 ```yaml
 
 dependencies:
-  app_logger: ^0.0.3
+  app_logger: ^0.0.5
 
 ```
 

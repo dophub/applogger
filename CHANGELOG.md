@@ -14,4 +14,8 @@
 
 - log model changed
  
+## 0.0.5
+
+- added logTag to LogModel
+ 
 

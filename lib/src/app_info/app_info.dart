@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:battery_plus/battery_plus.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:package_info_plus/package_info_plus.dart' as package;
@@ -108,14 +107,6 @@ class AppInfo {
       device = '';
       model = '';
       isPhysicalDevice = null;
-    }
-  }
-
-  static Future<int> getBatteryLevel() async {
-    try {
-      return await Battery().batteryLevel;
-    } catch (e) {
-      return -1;
     }
   }
 

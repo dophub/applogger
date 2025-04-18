@@ -1,6 +1,6 @@
 name: app_logger
 description: Log all Http request and Navigation.
-version: 0.0.4
+version: 0.0.5
 
 environment:
   sdk: '>=2.17.1 <4.0.0'
@@ -10,15 +10,14 @@ dependencies:
   flutter:
     sdk: flutter
 
-  background_json_parser: ^1.0.4
-  dio: ^4.0.6
-  device_info_plus: ^10.1.0
-  package_info_plus: ^8.0.0
-  battery_plus: ^6.0.1
+  background_json_parser: any
+  dio: ^5.8.0+1
+  device_info_plus: ^11.3.3
+  package_info_plus: ^8.3.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.1
+  flutter_lints: any
 
 flutter:

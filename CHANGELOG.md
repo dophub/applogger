@@ -1,21 +1,24 @@
-## 0.0.1
+## 0.0.6
 
-- doc edit
+- Upgraded package versions to the latest stable releases.
+- Fixed compatibility issues related to outdated dependencies.
 
-## 0.0.2
+## 0.0.5
 
-- edit readme
-
-## 0.0.3
-
-- edit readme
+- Added logTag to LogModel
 
 ## 0.0.4
 
-- log model changed
- 
-## 0.0.5
+- Log model changed
 
-- added logTag to LogModel
- 
+## 0.0.3
 
+- Edit README
+
+## 0.0.2
+
+- Edit README
+
+## 0.0.1
+
+- Doc edit

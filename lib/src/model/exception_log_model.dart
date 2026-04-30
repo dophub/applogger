@@ -8,11 +8,13 @@ class ExceptionLogModel extends IBaseModel<ExceptionLogModel> {
     required this.stack,
     required this.error,
     required this.appInfo,
+    required this.extra,
   });
 
   String stack;
   Object error;
   AppInfo appInfo;
+  Map<String, dynamic> extra;
 
   @override
   Map<String, dynamic> toJson() {
@@ -21,6 +23,7 @@ class ExceptionLogModel extends IBaseModel<ExceptionLogModel> {
       "stack": stack,
       "error": error.toString(),
       "device_info": appInfo.toMap(),
+      "extra": extra,
     };
   }
 

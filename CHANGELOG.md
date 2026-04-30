@@ -1,3 +1,8 @@
+## 0.0.7
+
+- Upgraded package versions to the latest stable releases.
+- The stack was formatted.
+
 ## 0.0.6
 
 - Upgraded package versions to the latest stable releases.

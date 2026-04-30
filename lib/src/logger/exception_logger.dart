@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 import 'package:app_logger/src/model/exception_log_model.dart';
@@ -14,9 +13,12 @@ class ExceptionLogger {
 
   static ExceptionLogger get instance => _instance ??= ExceptionLogger();
 
-  Future<void> onError(error, stack) async {
+  Future<void> onError(Object error, StackTrace stack) async {
     try {
-      if (AppLogger.instance.onError != null) AppLogger.instance.onError!(error, stack);
+      AppLogger.instance.onError?.call(error, stack);
+
+      final shortStack = _shortenStack(stack);
+
       log(
         "onError",
         error: "error: $error \nstack: $stack",
@@ -26,8 +28,9 @@ class ExceptionLogger {
         id: LogType.ERR,
         data: ExceptionLogModel(
           error: error.toString(),
-          stack: jsonEncode(stack.toString()),
+          stack: shortStack,
           appInfo: await AppInfo.instance(),
+          extra: {},
         ),
       );
       AppLogger.instance.callBackFun(model);
@@ -39,23 +42,50 @@ class ExceptionLogger {
 
   Future<void> onErrorCausedByFlutter(FlutterErrorDetails details) async {
     try {
-      log(
-        "onErrorCausedByFlutter",
-        error: 'exception: ${details.exception} \nstack: ${details.stack}',
-        name: 'AppLogger Error: ',
-      );
+      FlutterError.presentError(details);
+
+      final shortStack = _shortenStack(details.stack);
+
+      final extra = <String, dynamic>{
+        "exception": details.exception.toString(),
+        "stack": shortStack,
+        "library": details.library,
+        "context": details.context?.toString(),
+        "silent": details.silent,
+      };
+
+      if (details.informationCollector != null) {
+        extra["information"] = details.informationCollector!().map((e) => e.toString()).toList();
+      }
+
       final model = LogModel(
         id: LogType.APPERR,
         data: ExceptionLogModel(
-          error: "Error caused by flutter stack: ${jsonEncode(details.exception.toString())}",
-          stack: jsonEncode(details.exception.toString()),
+          error: details.exception.toString(),
+          stack: shortStack,
           appInfo: await AppInfo.instance(),
+          extra: extra,
         ),
       );
+
+      log(
+        "Flutter Error",
+        name: "AppLogger",
+        error: extra,
+      );
+
       AppLogger.instance.callBackFun(model);
+
       if (AppLogger.instance.configuration.killAppOnErrorCausedByFlutter) exit(1);
-    } catch (e) {
-      debugPrint('App logger error: $e');
+    } catch (e, s) {
+      debugPrint('App logger error: $e\n$s');
     }
+  }
+
+  String _shortenStack(StackTrace? stack, {int maxLines = 5}) {
+    if (stack == null) return "";
+
+    final lines = stack.toString().split('\n');
+    return lines.take(maxLines).join('\n');
   }
 }
